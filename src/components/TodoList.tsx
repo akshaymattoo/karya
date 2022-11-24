@@ -15,13 +15,18 @@ function TodoList(props: TodoProps) {
 
   useEffect(() => {
     let todosLS = localStorage.getItem('todos');
+
     if (todosLS) {
       setTodos(JSON.parse(todosLS));
+    } else {
+      localStorage.setItem('todos', '[]');
     }
 
     let scratchpad = localStorage.getItem('scratchpad');
     if (scratchpad) {
       setScratchPadTodos(JSON.parse(scratchpad));
+    } else {
+      localStorage.setItem('scratchpad', '[]');
     }
   }, []);
 

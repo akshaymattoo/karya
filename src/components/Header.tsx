@@ -8,7 +8,7 @@ function Header() {
       <HStack>
         <Link to="/">
           <Button leftIcon={<FcTodoList />} variant="solid">
-            Todolist
+            Todo list
           </Button>
         </Link>
         <Link to="/scratchpad">

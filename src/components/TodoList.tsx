@@ -77,7 +77,7 @@ function TodoList(props: TodoProps) {
           updatedAt: new Date().toLocaleString(),
         });
 
-        if (!canAddToTodoList()) {
+        if (todosLocal.length > 1 && !canAddToTodoList()) {
           showErrorToast(
             'Todo list limit exceeded',
             'Maximum number of tasks per day already here. Good luck completing them',

@@ -1,9 +1,8 @@
 import { IconButton, HStack, Button, Checkbox } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AutoResizeTextarea } from './AutoResizeTextArea';
 import { TodoType } from '../types/TodoType';
-
 function TodoItem({
   todo,
   deleteTask,
@@ -16,7 +15,14 @@ function TodoItem({
   const [todoinline, setTodoinline] = useState<TodoType>(todo);
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
   const [updatedTodo, setupdatedTodo] = useState<string>(todoinline.task);
+  const inputRef = useRef<any>();
   function editItem() {
+    console.log('inside update todo', inputRef.current);
+    if (inputRef.current) {
+      inputRef.current.selectionStart = inputRef.current.value.length;
+      inputRef.current.selectionEnd = inputRef.current.value.length;
+      inputRef.current.focus();
+    }
     setIsReadOnly(false);
     setTodoinline({
       ...todoinline,
@@ -106,6 +112,7 @@ function TodoItem({
           defaultValue={updatedTodo}
           onChange={changeTodo}
           isReadOnly={isReadOnly || todoinline.completed}
+          ref={inputRef}
           sx={{
             textDecoration: todoinline.completed ? 'line-through' : 'none',
             rows: '1',
@@ -142,9 +149,15 @@ function TodoItem({
         )}
       </>
       {!isReadOnly && (
-        <Button colorScheme="teal" size="xs" onClick={updateTodo}>
-          Update
-        </Button>
+        <>
+          <Button colorScheme="teal" size="xs" onClick={updateTodo}>
+            Update
+          </Button>
+
+          <Button colorScheme="red" size="xs" onClick={() => setIsReadOnly(true)}>
+            Cancel
+          </Button>
+        </>
       )}
     </HStack>
   );

@@ -4,15 +4,15 @@ import { AddIcon } from '@chakra-ui/icons';
 import { v4 as uuid } from 'uuid';
 import TodoItem from './TodoItem';
 import { TodoType, TodoProps } from '../types/TodoType';
-
 function TodoList(props: TodoProps) {
   const { hasLimit, placeholder } = props;
   const [value, setValue] = useState<string>('');
-  const [todos, setTodos] = useState<TodoType[] | null>(null);
+  const [todos, setTodos] = useState<TodoType[] | []>([]);
   const [scratchPadTodos, setScratchPadTodos] = useState<TodoType[] | null>(null);
   const [scratchPadTodosMutable, setScratchPadTodosMutable] = useState<string[]>([]);
   const toast = useToast();
 
+  const TODO_THRESHOLD = 8;
   useEffect(() => {
     let todosLS = localStorage.getItem('todos');
 
@@ -76,17 +76,12 @@ function TodoList(props: TodoProps) {
           createdAt: new Date().toLocaleString(),
           updatedAt: new Date().toLocaleString(),
         });
-        let completedTasks = todosLocal.filter((todo) => todo.completed === true).length;
-        let tasksThatCanBeAdded = todosLocal.length - completedTasks;
 
-        if (tasksThatCanBeAdded > 8) {
-          toast({
-            title: 'Todo list limit exceeded',
-            description: 'Maximum number of tasks per day already here. Good luck completing them',
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-          });
+        if (!canAddToTodoList()) {
+          showErrorToast(
+            'Todo list limit exceeded',
+            'Maximum number of tasks per day already here. Good luck completing them',
+          );
           return;
         }
 
@@ -111,9 +106,96 @@ function TodoList(props: TodoProps) {
     }
   };
 
-  function moveToTodoList() {
-    console.log(scratchPadTodos, scratchPadTodos?.length);
-    console.log(todos, todos?.length);
+  function moveToTodoListAndRemoveFromScratchPad(): void {
+    // Here on click of this I need to loop scratchPadTodosMutable , move them to todo list if possible
+    let couldMoveTolist = moveToTodoList(scratchPadTodosMutable);
+    //if the above passes only then removee from scratch pad
+    if (couldMoveTolist) removefromScratchPad(scratchPadTodosMutable);
+  }
+
+  function moveToTodoList(ids: string[]): boolean {
+    let temp: TodoType[] = [];
+    // Here I have to check length open todos and ids should be less than 8
+    let incompletedTasks = todos?.filter((todo) => todo.completed === false).length || 0;
+    if (incompletedTasks + ids.length > 8) {
+      showErrorToast('Cannot movee to todolist', 'This may increase the number of todos');
+      return false;
+    }
+
+    if (canAddToTodoList() && scratchPadTodos) {
+      for (let i = 0; i < ids.length; i++) {
+        temp.push(
+          scratchPadTodos.filter((todo) => {
+            return ids[i] === todo?.id;
+          })[0],
+        );
+      }
+      if (todos || temp) {
+        // console.log(temp);
+        // I have to add to the existing list
+        setTodos([...todos, ...temp]);
+      }
+      return true;
+    } else {
+      console.log('inside else');
+      // show a toast that we cant add them to todolist. Check if todo list already has 8 items.
+      showErrorToast(
+        'Todo list limit exceeded',
+        'Maximum number of tasks per day already here. Good luck completing them',
+      );
+      return false;
+    }
+  }
+  function removefromScratchPad(ids: string[]): void {
+    // loop over ids and remove them from scratchpad list
+    let temp: TodoType[] = [];
+    let indexes = [];
+    if (scratchPadTodos) {
+      for (let i = 0; i < scratchPadTodos.length; i++) {
+        for (let j = 0; j < ids.length; j++) {
+          if (ids[j] === scratchPadTodos[i].id) {
+            indexes.push(i);
+          }
+        }
+      }
+
+      for (let i = 0; i < scratchPadTodos.length; i++) {
+        if (!indexes.includes(i)) {
+          temp.push(scratchPadTodos[i]);
+        }
+      }
+
+      if (temp) {
+        setScratchPadTodos(temp);
+      }
+    }
+
+    // [1,2,3] [2,3]  should resut in [1]
+    // I will find the indexes and then I will remove those indexes from array
+  }
+
+  function canAddToTodoList() {
+    if (todos?.length) {
+      let completedTasks = todos.filter((todo) => todo.completed === true).length;
+      let tasksThatCanBeAdded = todos.length - completedTasks;
+      console.log(
+        `tasksThatCanBeAdded ${tasksThatCanBeAdded} ${tasksThatCanBeAdded < TODO_THRESHOLD}`,
+      );
+      return tasksThatCanBeAdded < TODO_THRESHOLD;
+    }
+    console.log('returing before false');
+    return false;
+  }
+
+  function showErrorToast(title: string, description: string) {
+    toast({
+      title: title,
+      description: description,
+      status: 'error',
+      duration: 5000,
+      isClosable: true,
+    });
+    return;
   }
   return (
     <Box pt="2rem">
@@ -137,7 +219,7 @@ function TodoList(props: TodoProps) {
       {/** Show this button only for scrathpad */}
       <VStack p="1rem" spacing="2rem">
         {!hasLimit && (
-          <Button size="xs" alignSelf="flex-start" onClick={moveToTodoList}>
+          <Button size="xs" alignSelf="flex-start" onClick={moveToTodoListAndRemoveFromScratchPad}>
             Move to Todolist
           </Button>
         )}

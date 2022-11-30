@@ -1,17 +1,29 @@
 import { Button, HStack, IconButton, VStack } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FcTodoList } from 'react-icons/fc';
 import { SlNotebook } from 'react-icons/sl';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 function Header() {
   const [todoActive, setTodoActive] = useState(true);
   const [scratchpadActive, setScratchpadActive] = useState(false);
+  const pathname = useLocation().pathname;
 
+  useEffect(() => {
+    if (pathname === '/') {
+      setTodoActive(true);
+      setScratchpadActive(false);
+    } else {
+      console.log('isnde sc');
+      setTodoActive(false);
+      setScratchpadActive(true);
+    }
+  }, [pathname]);
   function setActiveButton(activeButton: string) {
     if (activeButton === 'todo') {
       setTodoActive(true);
       setScratchpadActive(false);
     } else {
+      console.log('isnde sc');
       setTodoActive(false);
       setScratchpadActive(true);
     }

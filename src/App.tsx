@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/scratchpad" element={<ScratchPad />}></Route>
           <Route path="/" element={<HomeScreen />}></Route>
+          <Route path="/scratchpad" element={<ScratchPad />}></Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

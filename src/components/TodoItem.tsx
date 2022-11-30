@@ -150,11 +150,11 @@ function TodoItem({
       </>
       {!isReadOnly && (
         <>
-          <Button colorScheme="teal" size="xs" onClick={updateTodo}>
+          <Button colorScheme="twitter" size="xs" onClick={updateTodo} p="0.8rem">
             Update
           </Button>
 
-          <Button colorScheme="red" size="xs" onClick={() => setIsReadOnly(true)}>
+          <Button colorScheme="orange" size="xs" p="0.8rem" onClick={() => setIsReadOnly(true)}>
             Cancel
           </Button>
         </>

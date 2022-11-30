@@ -4,7 +4,7 @@ import { SlNotebook } from 'react-icons/sl';
 import { Link } from 'react-router-dom';
 function Header() {
   return (
-    <VStack mb="2rem" bg="gray.100" p={[10, 10, 2, 2]} sx={{ position: '' }}>
+    <VStack w="100%" bg="gray.100" p={[8, 8, 2, 2]} position="fixed">
       <HStack>
         <Link to="/">
           <Button leftIcon={<FcTodoList />} variant="solid">

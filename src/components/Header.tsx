@@ -29,7 +29,15 @@ function Header() {
     }
   }
   return (
-    <VStack w="100%" bg="blue.100" pt={[16, 8, 2, 2]} pb="1rem" mb="2rem" position={'fixed'}>
+    <VStack
+      w="100%"
+      bg="blue.200"
+      pt={[16, 8, 2, 2]}
+      pb="1rem"
+      mb="2rem"
+      position={'fixed'}
+      zIndex={100}
+    >
       <HStack>
         <Link to="/">
           <Button

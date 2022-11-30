@@ -198,7 +198,7 @@ function TodoList(props: TodoProps) {
     return;
   }
   return (
-    <Box pt="2rem">
+    <Box pt="2rem" position={'relative'} mt="8rem">
       <HStack pl="1rem" pr="1rem">
         <Input
           color="black"

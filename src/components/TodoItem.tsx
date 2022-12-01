@@ -1,6 +1,6 @@
 import { IconButton, HStack, Button, Checkbox } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AutoResizeTextarea } from './AutoResizeTextArea';
 import { TodoType } from '../types/TodoType';
 function TodoItem({
@@ -11,11 +11,22 @@ function TodoItem({
   setScratchPadTodosMutable,
   setTodos,
   setScratchPadTodos,
+  setMoveToTodoActive,
 }: any) {
   const [todoinline, setTodoinline] = useState<TodoType>(todo);
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
   const [updatedTodo, setupdatedTodo] = useState<string>(todoinline.task);
   const inputRef = useRef<any>();
+
+  useEffect(() => {
+    console.log('---length--', scratchPadTodosMutable.length);
+    if (scratchPadTodosMutable.length) {
+      setMoveToTodoActive(false);
+      return;
+    }
+    setMoveToTodoActive(true);
+  }, [scratchPadTodosMutable]);
+
   function editItem() {
     console.log('inside update todo', inputRef.current);
     if (inputRef.current) {

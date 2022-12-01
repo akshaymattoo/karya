@@ -10,6 +10,7 @@ function TodoList(props: TodoProps) {
   const [todos, setTodos] = useState<TodoType[] | []>([]);
   const [scratchPadTodos, setScratchPadTodos] = useState<TodoType[] | null>(null);
   const [scratchPadTodosMutable, setScratchPadTodosMutable] = useState<string[]>([]);
+  const [moveToTodoActive, setMoveToTodoActive] = useState<boolean>(true);
   const toast = useToast();
 
   const TODO_THRESHOLD = 8;
@@ -219,7 +220,13 @@ function TodoList(props: TodoProps) {
       {/** Show this button only for scrathpad */}
       <VStack p="1rem" spacing="2rem">
         {!hasLimit && (
-          <Button size="xs" alignSelf="flex-start" onClick={moveToTodoListAndRemoveFromScratchPad}>
+          <Button
+            colorScheme="twitter"
+            size="xs"
+            alignSelf="flex-start"
+            onClick={moveToTodoListAndRemoveFromScratchPad}
+            isDisabled={moveToTodoActive}
+          >
             Move to Todolist
           </Button>
         )}
@@ -242,6 +249,7 @@ function TodoList(props: TodoProps) {
                 scratchPadTodosMutable={scratchPadTodosMutable}
                 setScratchPadTodosMutable={setScratchPadTodosMutable}
                 setScratchPadTodos={setScratchPadTodos}
+                setMoveToTodoActive={setMoveToTodoActive}
               />
             ))}
       </VStack>

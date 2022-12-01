@@ -10,22 +10,22 @@ function Header() {
 
   useEffect(() => {
     if (pathname === '/') {
-      setTodoActive(true);
-      setScratchpadActive(false);
-    } else {
-      console.log('isnde sc');
       setTodoActive(false);
       setScratchpadActive(true);
+    } else {
+      console.log('isnde sc');
+      setTodoActive(true);
+      setScratchpadActive(false);
     }
   }, [pathname]);
   function setActiveButton(activeButton: string) {
     if (activeButton === 'todo') {
-      setTodoActive(true);
-      setScratchpadActive(false);
-    } else {
-      console.log('isnde sc');
       setTodoActive(false);
       setScratchpadActive(true);
+    } else {
+      console.log('isnde sc');
+      setTodoActive(true);
+      setScratchpadActive(false);
     }
   }
   return (

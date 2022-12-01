@@ -120,7 +120,7 @@ function TodoList(props: TodoProps) {
     // Here I have to check length open todos and ids should be less than 8
     let incompletedTasks = todos?.filter((todo) => todo.completed === false).length || 0;
     if (incompletedTasks + ids.length > 8) {
-      showErrorToast('Cannot movee to todolist', 'This may increase the number of todos');
+      showErrorToast('Cannot move to todolist', 'This may increase the number of todos');
       return false;
     }
 
@@ -132,8 +132,12 @@ function TodoList(props: TodoProps) {
           })[0],
         );
       }
-      if (todos || temp) {
-        setTodos([...todos, ...temp]);
+      if (todos === null || todos?.length === 0) {
+        setTodos(temp);
+      }
+      if (todos && temp) {
+        let newARR = todos?.concat(temp);
+        setTodos(newARR);
       }
       return true;
     } else {
@@ -174,7 +178,7 @@ function TodoList(props: TodoProps) {
   }
 
   function canAddToTodoList() {
-    if (todos?.length) {
+    if (todos !== null) {
       let completedTasks = todos.filter((todo) => todo.completed === true).length;
       let tasksThatCanBeAdded = todos.length - completedTasks;
       console.log(

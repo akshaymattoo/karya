@@ -10,12 +10,12 @@ function TodoList(props: TodoProps) {
   const [todos, setTodos] = useState<TodoType[] | []>([]);
   const [scratchPadTodos, setScratchPadTodos] = useState<TodoType[] | null>(null);
   const [scratchPadTodosMutable, setScratchPadTodosMutable] = useState<string[]>([]);
-  const [moveToTodoActive, setMoveToTodoActive] = useState<boolean>(true);
   const toast = useToast();
 
   const TODO_THRESHOLD = 8;
   useEffect(() => {
     let todosLS = localStorage.getItem('todos');
+
     if (todosLS) {
       setTodos(JSON.parse(todosLS));
     } else {
@@ -31,11 +31,14 @@ function TodoList(props: TodoProps) {
   }, []);
 
   useEffect(() => {
-    if (todos !== null) localStorage.setItem('todos', JSON.stringify(todos));
+    if (todos !== null && todos?.length > 0) {
+      console.log('not null', todos.length);
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
   }, [todos]);
 
   useEffect(() => {
-    if (scratchPadTodos !== null)
+    if (scratchPadTodos !== null && scratchPadTodos?.length > 0)
       localStorage.setItem('scratchpad', JSON.stringify(scratchPadTodos));
   }, [scratchPadTodos]);
 
@@ -137,6 +140,7 @@ function TodoList(props: TodoProps) {
       }
       return true;
     } else {
+      console.log('inside else');
       // show a toast that we cant add them to todolist. Check if todo list already has 8 items.
       showErrorToast(
         'Todo list limit exceeded',
@@ -197,7 +201,7 @@ function TodoList(props: TodoProps) {
     return;
   }
   return (
-    <Box pt="2rem" position={'relative'} mt="8rem">
+    <Box pt="2rem">
       <HStack pl="1rem" pr="1rem">
         <Input
           color="black"
@@ -218,13 +222,7 @@ function TodoList(props: TodoProps) {
       {/** Show this button only for scrathpad */}
       <VStack p="1rem" spacing="2rem">
         {!hasLimit && (
-          <Button
-            colorScheme="twitter"
-            size="xs"
-            alignSelf="flex-start"
-            onClick={moveToTodoListAndRemoveFromScratchPad}
-            isDisabled={moveToTodoActive}
-          >
+          <Button size="xs" alignSelf="flex-start" onClick={moveToTodoListAndRemoveFromScratchPad}>
             Move to Todolist
           </Button>
         )}
@@ -247,7 +245,6 @@ function TodoList(props: TodoProps) {
                 scratchPadTodosMutable={scratchPadTodosMutable}
                 setScratchPadTodosMutable={setScratchPadTodosMutable}
                 setScratchPadTodos={setScratchPadTodos}
-                setMoveToTodoActive={setMoveToTodoActive}
               />
             ))}
       </VStack>

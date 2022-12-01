@@ -7,7 +7,7 @@ import { TodoType, TodoProps } from '../types/TodoType';
 function TodoList(props: TodoProps) {
   const { hasLimit, placeholder } = props;
   const [value, setValue] = useState<string>('');
-  const [todos, setTodos] = useState<TodoType[] | []>([]);
+  const [todos, setTodos] = useState<TodoType[] | null>(null);
   const [scratchPadTodos, setScratchPadTodos] = useState<TodoType[] | null>(null);
   const [scratchPadTodosMutable, setScratchPadTodosMutable] = useState<string[]>([]);
   const [moveToTodoActive, setMoveToTodoActive] = useState<boolean>(true);
@@ -31,7 +31,10 @@ function TodoList(props: TodoProps) {
   }, []);
 
   useEffect(() => {
-    if (todos !== null) localStorage.setItem('todos', JSON.stringify(todos));
+    if (todos !== null) {
+      console.log(todos);
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
   }, [todos]);
 
   useEffect(() => {
@@ -45,7 +48,6 @@ function TodoList(props: TodoProps) {
 
   function deleteTask(id: string) {
     // here I need to find id that id and mark it true
-    console.log(id);
     let list = hasLimit
       ? todos?.filter((item) => item.id !== id)
       : scratchPadTodos?.filter((item) => item.id !== id);

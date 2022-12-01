@@ -54,7 +54,7 @@ function Header() {
             isActive={scratchpadActive}
             onClick={() => setActiveButton('scp')}
           >
-            Scratchpad
+            Scratch pad
           </Button>
         </Link>
       </HStack>

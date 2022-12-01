@@ -13,7 +13,6 @@ function Header() {
       setTodoActive(false);
       setScratchpadActive(true);
     } else {
-      console.log('isnde sc');
       setTodoActive(true);
       setScratchpadActive(false);
     }
@@ -23,7 +22,6 @@ function Header() {
       setTodoActive(false);
       setScratchpadActive(true);
     } else {
-      console.log('isnde sc');
       setTodoActive(true);
       setScratchpadActive(false);
     }

@@ -19,16 +19,13 @@ function TodoItem({
   const inputRef = useRef<any>();
 
   useEffect(() => {
-    console.log('---length--', scratchPadTodosMutable.length);
-    if (scratchPadTodosMutable.length) {
-      setMoveToTodoActive(false);
-      return;
+    if (scratchPadTodosMutable) {
+      if (scratchPadTodosMutable?.length) setMoveToTodoActive(false);
+      else setMoveToTodoActive(true);
     }
-    setMoveToTodoActive(true);
   }, [scratchPadTodosMutable]);
 
   function editItem() {
-    console.log('inside update todo', inputRef.current);
     if (inputRef.current) {
       inputRef.current.selectionStart = inputRef.current.value.length;
       inputRef.current.selectionEnd = inputRef.current.value.length;

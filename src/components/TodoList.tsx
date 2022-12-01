@@ -16,7 +16,6 @@ function TodoList(props: TodoProps) {
   const TODO_THRESHOLD = 8;
   useEffect(() => {
     let todosLS = localStorage.getItem('todos');
-
     if (todosLS) {
       setTodos(JSON.parse(todosLS));
     } else {
@@ -138,7 +137,6 @@ function TodoList(props: TodoProps) {
       }
       return true;
     } else {
-      console.log('inside else');
       // show a toast that we cant add them to todolist. Check if todo list already has 8 items.
       showErrorToast(
         'Todo list limit exceeded',

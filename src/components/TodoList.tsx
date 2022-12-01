@@ -133,8 +133,6 @@ function TodoList(props: TodoProps) {
         );
       }
       if (todos || temp) {
-        // console.log(temp);
-        // I have to add to the existing list
         setTodos([...todos, ...temp]);
       }
       return true;

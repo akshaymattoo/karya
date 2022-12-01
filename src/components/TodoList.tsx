@@ -10,7 +10,7 @@ function TodoList(props: TodoProps) {
   const [todos, setTodos] = useState<TodoType[] | null>(null);
   const [scratchPadTodos, setScratchPadTodos] = useState<TodoType[] | null>(null);
   const [scratchPadTodosMutable, setScratchPadTodosMutable] = useState<string[]>([]);
-  const [moveToTodoActive, setMoveToTodoActive] = useState<boolean>(true);
+  const [moveToTodoDisable, setMoveToTodoDisable] = useState<boolean>(true);
   const toast = useToast();
 
   const TODO_THRESHOLD = 8;
@@ -112,8 +112,7 @@ function TodoList(props: TodoProps) {
     let couldMoveTolist = moveToTodoList(scratchPadTodosMutable);
     //if the above passes only then removee from scratch pad
     if (couldMoveTolist) removefromScratchPad(scratchPadTodosMutable);
-    console.log('setting button to be inactoive');
-    setMoveToTodoActive(false);
+    setMoveToTodoDisable(true);
   }
 
   function moveToTodoList(ids: string[]): boolean {
@@ -224,7 +223,7 @@ function TodoList(props: TodoProps) {
             size="xs"
             alignSelf="flex-start"
             onClick={moveToTodoListAndRemoveFromScratchPad}
-            isDisabled={moveToTodoActive}
+            isDisabled={moveToTodoDisable}
           >
             Move to Todolist
           </Button>
@@ -248,7 +247,7 @@ function TodoList(props: TodoProps) {
                 scratchPadTodosMutable={scratchPadTodosMutable}
                 setScratchPadTodosMutable={setScratchPadTodosMutable}
                 setScratchPadTodos={setScratchPadTodos}
-                setMoveToTodoActive={setMoveToTodoActive}
+                setMoveToTodoDisable={setMoveToTodoDisable}
               />
             ))}
       </VStack>

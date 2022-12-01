@@ -11,7 +11,7 @@ function TodoItem({
   setScratchPadTodosMutable,
   setTodos,
   setScratchPadTodos,
-  setMoveToTodoActive,
+  setMoveToTodoDisable,
 }: any) {
   const [todoinline, setTodoinline] = useState<TodoType>(todo);
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
@@ -20,8 +20,8 @@ function TodoItem({
 
   useEffect(() => {
     if (scratchPadTodosMutable) {
-      if (scratchPadTodosMutable?.length) setMoveToTodoActive(false);
-      else setMoveToTodoActive(true);
+      if (scratchPadTodosMutable?.length) setMoveToTodoDisable(false);
+      else setMoveToTodoDisable(true);
     }
   }, [scratchPadTodosMutable]);
 

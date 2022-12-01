@@ -32,7 +32,6 @@ function TodoList(props: TodoProps) {
 
   useEffect(() => {
     if (todos !== null) {
-      console.log(todos);
       localStorage.setItem('todos', JSON.stringify(todos));
     }
   }, [todos]);
@@ -113,6 +112,8 @@ function TodoList(props: TodoProps) {
     let couldMoveTolist = moveToTodoList(scratchPadTodosMutable);
     //if the above passes only then removee from scratch pad
     if (couldMoveTolist) removefromScratchPad(scratchPadTodosMutable);
+    console.log('setting button to be inactoive');
+    setMoveToTodoActive(false);
   }
 
   function moveToTodoList(ids: string[]): boolean {
@@ -181,12 +182,8 @@ function TodoList(props: TodoProps) {
     if (todos !== null) {
       let completedTasks = todos.filter((todo) => todo.completed === true).length;
       let tasksThatCanBeAdded = todos.length - completedTasks;
-      console.log(
-        `tasksThatCanBeAdded ${tasksThatCanBeAdded} ${tasksThatCanBeAdded < TODO_THRESHOLD}`,
-      );
       return tasksThatCanBeAdded < TODO_THRESHOLD;
     }
-    console.log('returing before false');
     return false;
   }
 

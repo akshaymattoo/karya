@@ -2,3 +2,6 @@
   margin: 0 auto;
   text-align: center;
 }
+body {
+  font-family: 'Roboto Flex', sans-serif;
+}

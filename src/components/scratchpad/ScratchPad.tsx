@@ -1,9 +1,11 @@
-import { Box, useMediaQuery } from '@chakra-ui/react';
-import TodoList from './TodoList';
+import { Box } from '@chakra-ui/react';
+import TodoList from '../TodoList';
+import Header from '../Header';
 
-export default function HomeScreen() {
+export default function ScratchPad() {
   return (
     <>
+      <Header />
       <Box
         display={'flex'}
         justifyContent="center"
@@ -23,24 +25,9 @@ export default function HomeScreen() {
           borderRadius="12px"
           boxShadow="0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)"
         >
-          <TodoList hasLimit={true} placeholder={'enter todo item'} />
+          <TodoList hasLimit={false} placeholder={'enter scratchpad item'} />
         </Box>
       </Box>
     </>
   );
-}
-{
-  /*
-
-        resize='both'
-        
-        w='50%'
-        h='50%'
-        m='auto'
-       
-        overflow='auto'
-        boxShadow='0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)'
-        textAlign='center'
-        mt='5em'
-  */
 }

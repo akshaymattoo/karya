@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Box, Button, IconButton, Input, HStack, VStack, useToast } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { v4 as uuid } from 'uuid';
-import TodoItem from './todos/TodoItem';
-import { TodoType, TodoProps } from '../types/TodoType';
+import TodoItem from '../todos/TodoItem';
+import { TodoType, TodoProps } from '../../types/TodoType';
 function TodoList(props: TodoProps) {
   const { hasLimit, placeholder } = props;
   const [value, setValue] = useState<string>('');

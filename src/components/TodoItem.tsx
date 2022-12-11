@@ -1,4 +1,4 @@
-import { IconButton, HStack, Button, Checkbox } from '@chakra-ui/react';
+import { IconButton, HStack, Button, Checkbox, Input } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { AutoResizeTextarea } from './AutoResizeTextArea';
@@ -24,6 +24,14 @@ function TodoItem({
       else setMoveToTodoDisable(true);
     }
   }, [scratchPadTodosMutable]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.selectionStart = inputRef.current.value.length;
+      inputRef.current.selectionEnd = inputRef.current.value.length;
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
 
   function editItem() {
     if (inputRef.current) {
@@ -125,20 +133,22 @@ function TodoItem({
             textDecoration: todoinline.completed ? 'line-through' : 'none',
             rows: '1',
           }}
+          resize="none"
         />
+
         {isReadOnly && (
           <>
             {!todoinline.completed && (
               <>
                 <IconButton
-                  size="sm"
+                  size="xs"
                   isRound={true}
                   aria-label="edit todo task"
                   icon={<EditIcon />}
                   onClick={editItem}
                 />
                 <IconButton
-                  size="sm"
+                  size="xs"
                   isRound={true}
                   aria-label="mark todo ask complete"
                   icon={<CheckIcon />}
@@ -147,7 +157,7 @@ function TodoItem({
               </>
             )}
             <IconButton
-              size="sm"
+              size="xs"
               isRound={true}
               aria-label="delte todo task"
               icon={<DeleteIcon />}

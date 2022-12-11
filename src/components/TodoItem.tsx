@@ -29,17 +29,19 @@ function TodoItem({
 
   useEffect(() => {
     if (inputRef.current) {
+      console.log('inside the focus logic');
       inputRef.current.selectionStart = inputRef.current.value.length;
       inputRef.current.selectionEnd = inputRef.current.value.length;
       inputRef.current.focus();
     }
-  }, [inputRef]);
+  }, [inputRef.current]);
 
   function editItem() {
     if (inputRef.current) {
-      inputRef.current.selectionStart = inputRef.current.value.length;
-      inputRef.current.selectionEnd = inputRef.current.value.length;
-      inputRef.current.focus();
+      // console.log('inside the focus logic function');
+      // inputRef.current.selectionStart = inputRef.current.value.length;
+      // inputRef.current.selectionEnd = inputRef.current.value.length;
+      // inputRef.current.focus();
       focusAndOpenKeyboard(inputRef, transitionDurationMS);
     }
     setIsReadOnly(false);

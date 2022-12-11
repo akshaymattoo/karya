@@ -1,8 +1,10 @@
-import { IconButton, HStack, Button, Checkbox } from '@chakra-ui/react';
+import { IconButton, HStack, Button, Checkbox, Input } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { AutoResizeTextarea } from '../AutoResizeTextArea';
 import { TodoType } from '../../types/TodoType';
+import { focusAndOpenKeyboard } from '../../utils/focusAndOpenKeyboard';
+
 function TodoItem({
   todo,
   deleteTask,
@@ -17,7 +19,7 @@ function TodoItem({
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
   const [updatedTodo, setupdatedTodo] = useState<string>(todoinline.task);
   const inputRef = useRef<any>();
-
+  const transitionDurationMS: number = 300;
   useEffect(() => {
     if (scratchPadTodosMutable) {
       if (scratchPadTodosMutable?.length) setMoveToTodoDisable(false);
@@ -25,11 +27,22 @@ function TodoItem({
     }
   }, [scratchPadTodosMutable]);
 
-  function editItem() {
+  useEffect(() => {
     if (inputRef.current) {
+      console.log('inside the focus logic');
       inputRef.current.selectionStart = inputRef.current.value.length;
       inputRef.current.selectionEnd = inputRef.current.value.length;
       inputRef.current.focus();
+    }
+  }, [inputRef.current]);
+
+  function editItem() {
+    if (inputRef.current) {
+      // console.log('inside the focus logic function');
+      // inputRef.current.selectionStart = inputRef.current.value.length;
+      // inputRef.current.selectionEnd = inputRef.current.value.length;
+      // inputRef.current.focus();
+      focusAndOpenKeyboard(inputRef, transitionDurationMS);
     }
     setIsReadOnly(false);
     setTodoinline({
@@ -125,20 +138,22 @@ function TodoItem({
             textDecoration: todoinline.completed ? 'line-through' : 'none',
             rows: '1',
           }}
+          resize="none"
         />
+
         {isReadOnly && (
           <>
             {!todoinline.completed && (
               <>
                 <IconButton
-                  size="sm"
+                  size="xs"
                   isRound={true}
                   aria-label="edit todo task"
                   icon={<EditIcon />}
                   onClick={editItem}
                 />
                 <IconButton
-                  size="sm"
+                  size="xs"
                   isRound={true}
                   aria-label="mark todo ask complete"
                   icon={<CheckIcon />}
@@ -147,7 +162,7 @@ function TodoItem({
               </>
             )}
             <IconButton
-              size="sm"
+              size="xs"
               isRound={true}
               aria-label="delte todo task"
               icon={<DeleteIcon />}

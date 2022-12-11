@@ -3,6 +3,8 @@ import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { AutoResizeTextarea } from './AutoResizeTextArea';
 import { TodoType } from '../types/TodoType';
+import { focusAndOpenKeyboard } from '../utils/focusAndOpenKeyboard';
+
 function TodoItem({
   todo,
   deleteTask,
@@ -17,7 +19,7 @@ function TodoItem({
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
   const [updatedTodo, setupdatedTodo] = useState<string>(todoinline.task);
   const inputRef = useRef<any>();
-
+  const transitionDurationMS: number = 300;
   useEffect(() => {
     if (scratchPadTodosMutable) {
       if (scratchPadTodosMutable?.length) setMoveToTodoDisable(false);
@@ -38,6 +40,7 @@ function TodoItem({
       inputRef.current.selectionStart = inputRef.current.value.length;
       inputRef.current.selectionEnd = inputRef.current.value.length;
       inputRef.current.focus();
+      focusAndOpenKeyboard(inputRef, transitionDurationMS);
     }
     setIsReadOnly(false);
     setTodoinline({

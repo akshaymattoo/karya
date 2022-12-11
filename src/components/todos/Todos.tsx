@@ -1,6 +1,6 @@
 import { Box, useMediaQuery } from '@chakra-ui/react';
-import Header from '../Header';
-import TodoList from '../TodoList';
+import Header from '../navigation/Header';
+import TodoList from '../todolist/TodoList';
 
 export default function Todos() {
   return (

@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
-import TodoList from '../TodoList';
-import Header from '../Header';
+import TodoList from '../todolist/TodoList';
+import Header from '../navigation/Header';
 
 export default function ScratchPad() {
   return (

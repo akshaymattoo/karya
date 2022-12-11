@@ -54,7 +54,7 @@ export default function HomeScreen() {
           </Box>
           <Hide breakpoint="(max-width: 772px)">
             <Box>
-              <Image boxSize="720px" src="/src/assets/hero.png" alt="Dan Abramov" />
+              <Image boxSize="720px" src="/assets/hero.png" alt="hero image" />
             </Box>
           </Hide>
         </Box>

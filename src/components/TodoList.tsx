@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Button, IconButton, Input, HStack, VStack, useToast } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { v4 as uuid } from 'uuid';
-import TodoItem from './TodoItem';
+import TodoItem from './todos/TodoItem';
 import { TodoType, TodoProps } from '../types/TodoType';
 function TodoList(props: TodoProps) {
   const { hasLimit, placeholder } = props;
@@ -14,6 +14,7 @@ function TodoList(props: TodoProps) {
   const toast = useToast();
 
   const TODO_THRESHOLD = 8;
+
   useEffect(() => {
     let todosLS = localStorage.getItem('todos');
     if (todosLS) {
@@ -41,6 +42,12 @@ function TodoList(props: TodoProps) {
       localStorage.setItem('scratchpad', JSON.stringify(scratchPadTodos));
   }, [scratchPadTodos]);
 
+  // use this function in useeffect to get the updated list
+  function sortComparator(a: any, b: any) {
+    if (a.updatedAt > b.updatedAt) return -1;
+    if (a.updatedAt < b.updatedAt) return 1;
+    return 0;
+  }
   const handleChange = (event: any) => {
     setValue(event.target.value);
   };

@@ -1,8 +1,8 @@
 import { IconButton, HStack, Button, Checkbox } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
 import { useEffect, useRef, useState } from 'react';
-import { AutoResizeTextarea } from './AutoResizeTextArea';
-import { TodoType } from '../types/TodoType';
+import { AutoResizeTextarea } from '../AutoResizeTextArea';
+import { TodoType } from '../../types/TodoType';
 function TodoItem({
   todo,
   deleteTask,

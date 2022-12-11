@@ -17,12 +17,12 @@ export default function HomeScreen() {
             <Heading p={[0.4, 0.8, 1, 1]} as="h1" size="2xl">
               Simple productivity tracker
             </Heading>
-            <Heading p={[0.4, 0.8, 1, 1]} as="h3" size="lg">
+            {/* <Heading p={[0.4, 0.8, 1, 1]} as="h3" size="lg">
               Plan a day a leave everything in scratchpad
             </Heading>
             <Heading p={[0.4, 0.8, 1, 1]} as="h4" size="md">
               Tackle 8 taks per day and see a productivity boost
-            </Heading>
+            </Heading> */}
             <Heading p={[0.4, 0.8, 1, 1]} as="h5" size="sm">
               Start using it today for free
             </Heading>

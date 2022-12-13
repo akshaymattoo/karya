@@ -23,7 +23,7 @@ const Hero = () => {
         </Text>
 
         <Text mb="6" fontSize={isLargerThan62 ? 'lg' : 'base'} opacity={0.7}>
-          Celebrate every day and see the magic of compounding over the years. Start using karya for
+          Conquer every day and see the magic of compounding over the years. Start using karya for
           free today.
         </Text>
         <Link to="/todos">

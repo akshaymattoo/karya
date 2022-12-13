@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Spacer, Text, useMediaQuery } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Spacer, Text, useMediaQuery, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import chakraHero from '/assets/hero.png';
@@ -12,8 +12,7 @@ const Hero = () => {
       w="full"
       px={isLargerThan62 ? '16' : '6'}
       py="16"
-      minHeight="90vh"
-      justifyContent="space-between"
+      justifyContent="center"
       flexDirection={isLargerThan62 ? 'row' : 'column'}
     >
       <Box mr={isLargerThan62 ? '6' : '0'} w={isLargerThan62 ? '60%' : 'full'}>
@@ -28,10 +27,10 @@ const Hero = () => {
         </Text>
         <Link to="/todos">
           <Button
-            w="200px"
+            w="150px"
             colorScheme="twitter"
             variant="solid"
-            h="50px"
+            h="40px"
             size={isLargerThan62 ? 'lg' : 'sm'}
             mb={isLargerThan62 ? '0' : '10'}
           >
@@ -40,10 +39,10 @@ const Hero = () => {
         </Link>
         <Link to="/scratchpad">
           <Button
-            w="200px"
+            w="150px"
             colorScheme="twitter"
             variant="solid"
-            h="50px"
+            h="40px"
             size={isLargerThan62 ? 'lg' : 'sm'}
             mb={isLargerThan62 ? '0' : '10'}
             ml={2}
@@ -55,7 +54,7 @@ const Hero = () => {
 
       <Spacer />
 
-      <Flex w={isLargerThan62 ? '40%' : 'full'} alignItems="center" justifyContent="center">
+      <Flex w={isLargerThan62 ? '30%' : '42%'} alignItems="center" justifyContent="center">
         <Image src={chakraHero} alt="Chakra UI" />
       </Flex>
     </Flex>

@@ -29,7 +29,6 @@ function TodoItem({
 
   useEffect(() => {
     if (inputRef.current) {
-      console.log('inside the focus logic');
       inputRef.current.selectionStart = inputRef.current.value.length;
       inputRef.current.selectionEnd = inputRef.current.value.length;
       inputRef.current.focus();
@@ -38,11 +37,7 @@ function TodoItem({
 
   function editItem() {
     if (inputRef.current) {
-      // console.log('inside the focus logic function');
-      // inputRef.current.selectionStart = inputRef.current.value.length;
-      // inputRef.current.selectionEnd = inputRef.current.value.length;
-      // inputRef.current.focus();
-      focusAndOpenKeyboard(inputRef, transitionDurationMS);
+      //focusAndOpenKeyboard(inputRef, transitionDurationMS);
     }
     setIsReadOnly(false);
     setTodoinline({

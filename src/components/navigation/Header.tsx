@@ -1,4 +1,4 @@
-import { Button, HStack, IconButton, VStack } from '@chakra-ui/react';
+import { Button, HStack, VStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FcHome, FcTodoList } from 'react-icons/fc';
 import { SlNotebook } from 'react-icons/sl';
@@ -45,7 +45,7 @@ function Header() {
     <VStack
       w="100%"
       bg="blue.200"
-      pt={[16, 8, 2, 2]}
+      pt={[14, 8, 2, 2]}
       pb="1rem"
       mb="2rem"
       position={'fixed'}

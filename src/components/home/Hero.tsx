@@ -1,5 +1,4 @@
 import { Box, Button, Flex, Image, Spacer, Text, useMediaQuery, VStack } from '@chakra-ui/react';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoHeader from '../navigation/LogoHeader';
 import chakraHero from '/assets/hero.png';

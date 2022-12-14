@@ -8,7 +8,7 @@ const Hero = () => {
   const [isLargerThan62] = useMediaQuery('(min-width: 62em)');
 
   return (
-    <>
+    <VStack spacing={10}>
       <LogoHeader />
       <Flex
         alignItems="center"
@@ -61,7 +61,7 @@ const Hero = () => {
           <Image src={chakraHero} alt="Chakra UI" />
         </Flex>
       </Flex>
-    </>
+    </VStack>
   );
 };
 

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AutoResizeTextarea } from '../AutoResizeTextArea';
 import { TodoType } from '../../types/TodoType';
 import { focusAndOpenKeyboard } from '../../utils/focusAndOpenKeyboard';
-
+import { arrangeItems } from '../../utils/utils';
 function TodoItem({
   todo,
   deleteTask,
@@ -70,9 +70,9 @@ function TodoItem({
       });
       todos = [...restTodos, ...[filteredTodo]];
       if (hasLimit) {
-        setTodos(todos);
+        setTodos(arrangeItems(todos));
       } else {
-        setScratchPadTodos(todos);
+        setScratchPadTodos(arrangeItems(todos));
       }
     }
   }
@@ -99,9 +99,9 @@ function TodoItem({
       });
       todos = [...restTodos, ...[filteredTodo]];
       if (hasLimit) {
-        setTodos(todos);
+        setTodos(arrangeItems(todos));
       } else {
-        setScratchPadTodos(todos);
+        setScratchPadTodos(arrangeItems(todos));
       }
     }
   }

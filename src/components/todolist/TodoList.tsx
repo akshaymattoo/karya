@@ -4,6 +4,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import { v4 as uuid } from 'uuid';
 import TodoItem from '../todos/TodoItem';
 import { TodoType, TodoProps } from '../../types/TodoType';
+import { arrangeItems } from '../../utils/utils';
 function TodoList(props: TodoProps) {
   const { hasLimit, placeholder } = props;
   const [value, setValue] = useState<string>('');
@@ -44,19 +45,6 @@ function TodoList(props: TodoProps) {
       localStorage.setItem('scratchpad', JSON.stringify(scratchPadTodos));
   }, [scratchPadTodos]);
 
-  // In this function we would arrange uncompleted and then completed based on updatedAt
-  function arrangeItems(items: any) {
-    return items.sort(sortComparator);
-  }
-  // use this function in useeffect to get the updated list
-  function sortComparator(a: any, b: any) {
-    console.log('inside sort comparator', a.updatedAt, b.updatedAt);
-    if (a.completed === false)
-      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-    // if (a.updatedAt < b.updatedAt) return -1;
-    // else if (a.updatedAt > b.updatedAt) return 1;
-    // else return 0;
-  }
   const handleChange = (event: any) => {
     setValue(event.target.value);
   };

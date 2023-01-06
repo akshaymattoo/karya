@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './components/navigation/Header';
 import HomeScreen from './components/home/Homescreen';
 import ScratchPad from './components/scratchpad/ScratchPad';
 import Todos from './components/todos/Todos';

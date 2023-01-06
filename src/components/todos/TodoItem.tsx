@@ -27,17 +27,21 @@ function TodoItem({
     }
   }, [scratchPadTodosMutable]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (inputRef.current) {
+  //     console.log('focus');
+  //     inputRef.current.selectionStart = inputRef.current.value.length;
+  //     inputRef.current.selectionEnd = inputRef.current.value.length;
+  //     inputRef.current.focus();
+  //   }
+  // }, [inputRef.current]);
+
+  function editItem() {
     if (inputRef.current) {
       inputRef.current.selectionStart = inputRef.current.value.length;
       inputRef.current.selectionEnd = inputRef.current.value.length;
       inputRef.current.focus();
-    }
-  }, [inputRef.current]);
-
-  function editItem() {
-    if (inputRef.current) {
-      //focusAndOpenKeyboard(inputRef, transitionDurationMS);
+      focusAndOpenKeyboard(inputRef, transitionDurationMS);
     }
     setIsReadOnly(false);
     setTodoinline({

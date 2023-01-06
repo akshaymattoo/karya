@@ -18,14 +18,16 @@ function TodoList(props: TodoProps) {
   useEffect(() => {
     let todosLS = localStorage.getItem('todos');
     if (todosLS) {
-      setTodos(JSON.parse(todosLS));
+      const tds = arrangeItems(JSON.parse(todosLS));
+      setTodos(tds);
     } else {
       localStorage.setItem('todos', '[]');
     }
 
     let scratchpad = localStorage.getItem('scratchpad');
     if (scratchpad) {
-      setScratchPadTodos(JSON.parse(scratchpad));
+      const scps = arrangeItems(JSON.parse(scratchpad));
+      setScratchPadTodos(scps);
     } else {
       localStorage.setItem('scratchpad', '[]');
     }
@@ -42,11 +44,18 @@ function TodoList(props: TodoProps) {
       localStorage.setItem('scratchpad', JSON.stringify(scratchPadTodos));
   }, [scratchPadTodos]);
 
+  // In this function we would arrange uncompleted and then completed based on updatedAt
+  function arrangeItems(items: any) {
+    return items.sort(sortComparator);
+  }
   // use this function in useeffect to get the updated list
   function sortComparator(a: any, b: any) {
-    if (a.updatedAt > b.updatedAt) return -1;
-    if (a.updatedAt < b.updatedAt) return 1;
-    return 0;
+    console.log('inside sort comparator', a.updatedAt, b.updatedAt);
+    if (a.completed === false)
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+    // if (a.updatedAt < b.updatedAt) return -1;
+    // else if (a.updatedAt > b.updatedAt) return 1;
+    // else return 0;
   }
   const handleChange = (event: any) => {
     setValue(event.target.value);
@@ -93,7 +102,7 @@ function TodoList(props: TodoProps) {
           return;
         }
 
-        setTodos(todosLocal);
+        setTodos(arrangeItems(todosLocal));
       } else {
         if (scratchPadTodos !== null) {
           let scratchPtodos = [...scratchPadTodos];
@@ -106,7 +115,7 @@ function TodoList(props: TodoProps) {
             createdAt: new Date().toLocaleString(),
             updatedAt: new Date().toLocaleString(),
           });
-          setScratchPadTodos(scratchPtodos);
+          setScratchPadTodos(arrangeItems(scratchPtodos));
         }
       }
     } finally {

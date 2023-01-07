@@ -1,11 +1,15 @@
 import { Box, useMediaQuery } from '@chakra-ui/react';
 import Header from '../navigation/Header';
 import TodoList from '../todolist/TodoList';
+import EmptyHeader from '../navigation/EmptyHeader';
+import MobileNav from '../navigation/MobileNav';
 
 export default function Todos() {
+  const [isLargerThan62] = useMediaQuery('(min-width: 33em)');
+
   return (
     <>
-      <Header />
+      {isLargerThan62 ? <Header /> : <EmptyHeader />}
       <Box
         display={'flex'}
         justifyContent="center"
@@ -28,6 +32,7 @@ export default function Todos() {
           <TodoList hasLimit={true} placeholder={'enter todo item'} />
         </Box>
       </Box>
+      {!isLargerThan62 && <MobileNav />}
     </>
   );
 }

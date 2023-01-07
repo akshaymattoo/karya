@@ -1,11 +1,15 @@
-import { Box } from '@chakra-ui/react';
+import { Box, useMediaQuery } from '@chakra-ui/react';
 import TodoList from '../todolist/TodoList';
 import Header from '../navigation/Header';
+import MobileNav from '../navigation/MobileNav';
+import EmptyHeader from '../navigation/EmptyHeader';
 
 export default function ScratchPad() {
+  const [isLargerThan62] = useMediaQuery('(min-width: 33em)');
+
   return (
     <>
-      <Header />
+      {isLargerThan62 ? <Header /> : <EmptyHeader />}
       <Box
         display={'flex'}
         justifyContent="center"
@@ -28,6 +32,7 @@ export default function ScratchPad() {
           <TodoList hasLimit={false} placeholder={'enter scratchpad item'} />
         </Box>
       </Box>
+      {!isLargerThan62 && <MobileNav />}
     </>
   );
 }

@@ -14,6 +14,7 @@ function TodoItem({
   setTodos,
   setScratchPadTodos,
   setMoveToTodoDisable,
+  showButtons = true,
 }: any) {
   const [todoinline, setTodoinline] = useState<TodoType>(todo);
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
@@ -140,7 +141,7 @@ function TodoItem({
           resize="none"
         />
 
-        {isReadOnly && (
+        {showButtons && isReadOnly && (
           <>
             {!todoinline.completed && (
               <>

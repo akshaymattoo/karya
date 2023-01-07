@@ -12,10 +12,16 @@ export default function AllTodos() {
   const [isLargerThan62] = useMediaQuery('(min-width: 33em)');
 
   useEffect(() => {
+    let tds = [];
     let todosLS = localStorage.getItem('todos');
-    const tds = JSON.parse(todosLS);
+    if (todosLS) {
+      tds = JSON.parse(todosLS);
+    }
     let scratchpad = localStorage.getItem('scratchpad');
-    const scps = JSON.parse(scratchpad);
+    let scps = [];
+    if (scratchpad) {
+      scps = JSON.parse(scratchpad);
+    }
     const allT = arrangeItems([...tds, ...scps]);
 
     setAllTodos(allT);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { VStack, useMediaQuery, Box } from '@chakra-ui/react';
+import { VStack, useMediaQuery, Box, Heading } from '@chakra-ui/react';
 import Header from '../navigation/Header';
 import EmptyHeader from '../navigation/EmptyHeader';
 import MobileNav from '../navigation/MobileNav';
@@ -31,20 +31,24 @@ export default function AllTodos() {
       {isLargerThan62 ? <Header /> : <EmptyHeader />}
 
       <VStack pl="1rem" pr="1rem" pt="10rem" spacing="2rem">
-        {allTodos?.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            deleteTask={() => {
-              console.log('hjhd');
-            }}
-            hasLimit={true}
-            showButtons={false}
-            setTodos={() => {
-              console.log('hjhd');
-            }}
-          />
-        ))}
+        {allTodos?.length === 0 ? (
+          <Heading>No todos yet.</Heading>
+        ) : (
+          allTodos?.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              deleteTask={() => {
+                console.log('hjhd');
+              }}
+              hasLimit={true}
+              showButtons={false}
+              setTodos={() => {
+                console.log('hjhd');
+              }}
+            />
+          ))
+        )}
       </VStack>
 
       {!isLargerThan62 && <MobileNav />}

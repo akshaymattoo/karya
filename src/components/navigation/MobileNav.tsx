@@ -9,7 +9,8 @@ function MobileNav() {
       display={'flex'}
       direction={'row'}
       justifyContent={'space-around'}
-      p={2}
+      pb={8}
+      pt={2}
       bg="gray.100"
       position={'fixed'}
       left={0}
@@ -17,10 +18,18 @@ function MobileNav() {
       width={'100%'}
     >
       <VStack>
+        <Link to="/alltodos">
+          <Icon as={FcList} />
+          <Heading as="h6" size="xs">
+            All
+          </Heading>
+        </Link>
+      </VStack>
+      <VStack>
         <Link to="/todos">
           <Icon as={FcTodoList} />
           <Heading as="h6" size="xs">
-            Todos
+            To-dos
           </Heading>
         </Link>
       </VStack>
@@ -28,15 +37,7 @@ function MobileNav() {
         <Link to="/scratchpad">
           <Icon as={FcInspection} />
           <Heading as="h6" size="xs">
-            Scratchpad
-          </Heading>
-        </Link>
-      </VStack>
-      <VStack>
-        <Link to="/alltodos">
-          <Icon as={FcList} />
-          <Heading as="h6" size="xs">
-            All
+            Scratch pad
           </Heading>
         </Link>
       </VStack>

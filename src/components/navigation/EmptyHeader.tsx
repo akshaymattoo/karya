@@ -5,7 +5,7 @@ function EmptyHeader() {
     <VStack
       w="100%"
       bg="gray.200"
-      pt={[10, 8, 2, 2]}
+      pt={[3, 3, 2, 2]}
       pb="0.5rem"
       mb="rem"
       position={'fixed'}

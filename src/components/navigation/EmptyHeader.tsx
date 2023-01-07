@@ -4,7 +4,7 @@ function EmptyHeader() {
   return (
     <VStack
       w="100%"
-      bg="gray.200"
+      bg={'gray.50'}
       pt={[3, 3, 2, 2]}
       pb="0.5rem"
       mb="rem"

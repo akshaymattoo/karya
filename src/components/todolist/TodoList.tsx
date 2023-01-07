@@ -201,7 +201,7 @@ function TodoList(props: TodoProps) {
     return;
   }
   return (
-    <Box pt="2rem" position={'relative'} mt="8rem">
+    <Box pt="2rem" position={'relative'} mt={['2rem', '4rem', '5rem', '5rem']}>
       <HStack pl="1rem" pr="1rem">
         <Input
           color="black"

@@ -1,6 +1,5 @@
 import { Box, Image } from '@chakra-ui/react';
-import logo from '/assets/logo.png';
-import logoColor from '/assets/logo-color.png';
+import logoColor from '/assets/h-logo.png';
 
 export default function LogoHeader() {
   return (

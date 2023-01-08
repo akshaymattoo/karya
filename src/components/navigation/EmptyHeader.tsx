@@ -1,5 +1,5 @@
-import { Text, VStack, Image } from '@chakra-ui/react';
-import logoColor from '/assets/logo-color.png';
+import { VStack, Image } from '@chakra-ui/react';
+import logoColor from '/assets/h-logo.png';
 function EmptyHeader() {
   return (
     <VStack

@@ -30,7 +30,7 @@ export default function AllTodos() {
     <>
       {isLargerThan62 ? <Header /> : <EmptyHeader />}
 
-      <VStack pl="1rem" pr="1rem" pt="4rem" spacing="2rem">
+      <VStack pl="1rem" pr="1rem" pt={['4rem', '5.6rem', '5.6rem', '5.6rem']} spacing="2rem">
         {allTodos?.length === 0 ? (
           <Heading>No todos yet.</Heading>
         ) : (

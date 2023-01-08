@@ -29,7 +29,7 @@ export default function ScratchPad() {
           borderRadius="12px"
           boxShadow="0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)"
         >
-          <TodoList hasLimit={false} placeholder={'enter scratchpad item'} />
+          <TodoList hasLimit={false} placeholder={'enter scratch pad item'} />
         </Box>
       </Box>
       {!isLargerThan62 && <MobileNav />}

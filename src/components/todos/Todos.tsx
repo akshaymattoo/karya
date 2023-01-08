@@ -29,7 +29,7 @@ export default function Todos() {
           borderRadius="12px"
           boxShadow="0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)"
         >
-          <TodoList hasLimit={true} placeholder={'enter todo item'} />
+          <TodoList hasLimit={true} placeholder={'enter to-do item'} />
         </Box>
       </Box>
       {!isLargerThan62 && <MobileNav />}

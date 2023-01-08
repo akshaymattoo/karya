@@ -1,5 +1,5 @@
-import { Text, VStack } from '@chakra-ui/react';
-
+import { Text, VStack, Image } from '@chakra-ui/react';
+import logoColor from '/assets/logo-color.png';
 function EmptyHeader() {
   return (
     <VStack
@@ -14,9 +14,7 @@ function EmptyHeader() {
       alignItems={'flex-start'}
       pl="1rem"
     >
-      <Text fontSize="2xl" as="i">
-        karya
-      </Text>
+      <Image width={'50px'} objectFit="cover" src={logoColor} />
     </VStack>
   );
 }

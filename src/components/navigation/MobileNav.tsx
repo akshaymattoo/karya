@@ -47,8 +47,7 @@ function MobileNav() {
       display={'flex'}
       direction={'row'}
       justifyContent={'space-around'}
-      pb={8}
-      pt={2}
+      pb={4}
       bg="gray.50"
       position={'fixed'}
       left={0}

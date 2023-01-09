@@ -29,34 +29,42 @@ export default function AllTodos() {
   return (
     <>
       {isLargerThan62 ? <Header /> : <EmptyHeader />}
-
-      <VStack
-        bg="#F9F8F8"
-        pl="1rem"
-        pr="1rem"
-        pt={['4rem', '5.6rem', '5.6rem', '5.6rem']}
-        spacing="2rem"
-        boxShadow="0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)"
-      >
-        {allTodos?.length === 0 ? (
-          <Heading>No todos yet.</Heading>
-        ) : (
-          allTodos?.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              deleteTask={() => {
-                console.log('hjhd');
-              }}
-              hasLimit={true}
-              showButtons={false}
-              setTodos={() => {
-                console.log('hjhd');
-              }}
-            />
-          ))
-        )}
-      </VStack>
+      <Box display={'flex'} justifyContent="center" flexDir="column" alignItems="center">
+        <VStack
+          bg="#F9F8F8"
+          pl="1rem"
+          pr="1rem"
+          pt={['4rem', '5.6rem', '5.6rem', '5.6rem']}
+          w={[
+            '100%', // 0-30em
+            '100%', // 30em-48em
+            '80%', // 48em-62em
+            '60%',
+          ]}
+          maxW="100%"
+          borderRadius="12px"
+          boxShadow="0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)"
+        >
+          {allTodos?.length === 0 ? (
+            <Heading>No todos yet.</Heading>
+          ) : (
+            allTodos?.map((todo) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                deleteTask={() => {
+                  console.log('hjhd');
+                }}
+                hasLimit={true}
+                showButtons={false}
+                setTodos={() => {
+                  console.log('hjhd');
+                }}
+              />
+            ))
+          )}
+        </VStack>
+      </Box>
 
       {!isLargerThan62 && <MobileNav />}
     </>
